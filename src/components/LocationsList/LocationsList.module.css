@@ -1,22 +1,18 @@
-.results {
-  width: 25%;
-  max-width: 40rem;
-  margin: 2rem auto;
-  display: inline-block;
-}
-
 .results ul {
   list-style: none;
-  padding: 1rem;
 }
 
 .results li {
-  border: 1px solid #ccc;
-  margin: 0.5rem 0;
   padding: 0.5rem;
+  display: inline;
+  color: rgb(116, 118, 121);
 }
 .results li:hover {
   cursor: pointer;
+}
+
+.results li:active {
+  background: #ebf8e1;
 }
 
 @media (min-width: 768px) {

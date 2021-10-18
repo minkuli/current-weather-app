@@ -1,11 +1,9 @@
 import React from "react";
-import Card from "../UI/Card/Card";
 import classes from "./LocationsList.module.css";
 
 const LocationsList = (props) => {
-  console.log(props);
   return (
-    <Card className={classes.results}>
+    <div className={classes.results}>
       <ul>
         {props.locations.map((location) => (
           <li
@@ -18,7 +16,7 @@ const LocationsList = (props) => {
           </li>
         ))}
       </ul>
-    </Card>
+    </div>
   );
 };
 

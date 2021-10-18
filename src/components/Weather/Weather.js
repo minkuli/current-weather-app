@@ -7,16 +7,27 @@ const Weather = (props) => {
   const { apiData } = props;
   return (
     <Card className={classes.form}>
-      <h2>{apiData.city}</h2>
+      <h1 className={classes.title}>{apiData.city}</h1>
+      <h2 className={classes.description}>{apiData.description}</h2>
       <p>
-        Current temperature: {apiData.temp}&deg;C, real feel:{" "}
-        {apiData.feels_like}&deg;C
+        Low <b>{apiData.temp_min}&deg;C</b> / High{" "}
+        <b>{apiData.temp_max}&deg;C</b>
       </p>
+      <div className={classes.cont}>
+        <img
+          src={`${process.env.REACT_APP_ICON_URL}/${apiData.icon}@2x.png`}
+          alt="Avatar"
+          className={classes.avatar}
+        />
+        <p className={classes.temp}> {apiData.temp}&deg;C</p>
+        <p className={classes.real_feel}>
+          Feels like: <b>{apiData.feels_like}&deg;C</b>
+        </p>
+      </div>
+
       <p>
-        Temperature today goes from {apiData.temp_min}&deg;C to{" "}
-        {apiData.temp_max}&deg;C
+        Humidity: <b>{apiData.humidity}%</b>
       </p>
-      <p>Humidity: {apiData.humidity}g/m^3</p>
     </Card>
   );
 };
