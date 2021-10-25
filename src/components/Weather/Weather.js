@@ -4,6 +4,8 @@ import WeatherContext from "../../store/weather-context";
 import Card from "../UI/Card/Card";
 import classes from "./Weather.module.css";
 
+const iconUrl = process.env.REACT_APP_ICON_URL;
+
 const Weather = () => {
   const { weather, city } = useContext(WeatherContext);
 
@@ -25,7 +27,7 @@ const Weather = () => {
           </p>
           <div className={classes.cont}>
             <img
-              src={`${process.env.REACT_APP_ICON_URL}/${icon}@2x.png`}
+              src={`${iconUrl}/${icon}@2x.png`}
               alt="Avatar"
               className={classes.avatar}
             />

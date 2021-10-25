@@ -1,24 +1,29 @@
-import { Fragment, useContext, useState } from "react";
+import { useContext } from "react";
 import WeatherContext from "../../store/weather-context";
 import classes from "./LocationsList.module.css";
 
-const LocationsList = () => {
+const LocationsList = (props) => {
   const { locations } = useContext(WeatherContext);
-
-  console.log(locations);
+  const { onLocationClick } = props;
 
   return (
-    <Fragment>
-      {locations !== null && (
+    <div className={classes.cont}>
+      {locations.length !== 0 && (
         <div className={classes.results}>
           <ul>
             {locations.map((location) => (
-              <li key={location.id}>{location.city}</li>
+              <li
+                key={location.id}
+                onClick={() => onLocationClick(location.city)}
+                value={location.city}
+              >
+                {location.city}
+              </li>
             ))}
           </ul>
         </div>
       )}
-    </Fragment>
+    </div>
   );
 };
 

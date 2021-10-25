@@ -1,10 +1,30 @@
+.cont {
+  position: absolute;
+  width: 11rem;
+  top: 184px;
+  left: 580px;
+  right: 0;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  border-width: 1px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.results {
+  width: 25%;
+  max-width: 10rem;
+  margin: 0px;
+}
+
 .results ul {
   list-style: none;
 }
 
 .results li {
   padding: 0.5rem;
-  display: inline;
   color: rgb(116, 118, 121);
 }
 .results li:hover {

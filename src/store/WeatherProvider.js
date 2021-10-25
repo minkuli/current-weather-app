@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import WeatherContext from "./weather-context";
-import Location from "../components/Location/Location";
-import Weather from "../components/Weather/Weather";
-import Error from "../components/Error/Error";
 
 const apiKey = process.env.REACT_APP_API_KEY;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const WeatherProvider = (props) => {
   const [weather, setWeather] = useState({
@@ -14,13 +12,18 @@ const WeatherProvider = (props) => {
   });
   const [city, setCity] = useState(null);
   const [error, setError] = useState(null);
+  const [locations, setLocations] = useState([]);
 
   const getWeather = (e) => {
-    e.preventDefault();
-    const location = e.target.elements.city.value;
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`
-    )
+    let location;
+    if (e._reactName === "onSubmit") {
+      e.preventDefault();
+      location = e.target.elements.city.value;
+    } else {
+      location = e;
+    }
+
+    fetch(apiUrl + `/weather?q=${location}&units=metric&appid=${apiKey}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -52,14 +55,32 @@ const WeatherProvider = (props) => {
         });
         setCity(resJson.name);
         setError(null);
+        updateLocations(resJson.name);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const updateLocations = (input) => {
+    const checkCity = locations.some((location) => location.city === input);
+    if (checkCity) {
+      setLocations(locations);
+    } else {
+      if (locations.length === 5) locations.shift();
+      setLocations((prevLocations) => {
+        return [
+          ...prevLocations,
+          { city: input, id: Math.random().toString() },
+        ];
+      });
+    }
+  };
+
   return (
-    <WeatherContext.Provider value={{ getWeather, weather, city, error }}>
+    <WeatherContext.Provider
+      value={{ getWeather, weather, city, error, locations }}
+    >
       {props.children}
     </WeatherContext.Provider>
   );

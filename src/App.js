@@ -4,7 +4,6 @@ import Location from "./components/Location/Location";
 import Weather from "./components/Weather/Weather";
 import Error from "./components/Error/Error";
 import WeatherProvider from "./store/WeatherProvider";
-import LocationsList from "./components/LocationsList/LocationsList";
 
 import "./App.css";
 
@@ -14,7 +13,6 @@ function App() {
       <Header />
       <WeatherProvider>
         <Location />
-
         <Error />
         <Weather />
       </WeatherProvider>
